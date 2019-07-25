@@ -14,7 +14,7 @@ class AuthController < ApplicationController
       scope: scope,
       state: session[:login_time]
     }
-    @oauth_url = "https://api.va.gov/oauth2/authorization?#{oauth_params.to_query}"
+    @oauth_url = "#{Figaro.env.vets_api_url}/oauth2/authorization?#{oauth_params.to_query}"
   end
 
   def callback
@@ -33,7 +33,7 @@ class AuthController < ApplicationController
       redirect_uri: 'http://localhost:3000/callback'
     }
     auth = { username: ENV['va_developer_client_id'], password: ENV['va_developer_client_secret'] }
-    response = HTTParty.post('https://api.va.gov/oauth2/token', { basic_auth: auth, body: body })
+    response = HTTParty.post('#{Figaro.env.vets_api_url}/oauth2/token', { basic_auth: auth, body: body })
     if response.code/400 == 1
       flash.alert = "Login failed because #{response['error']}."
       Rails.logger.warn "Response was 4XX.  This was response:\n    #{response}"
