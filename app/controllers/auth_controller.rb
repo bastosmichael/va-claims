@@ -30,7 +30,7 @@ class AuthController < ApplicationController
       grant_type: 'authorization_code',
       code: params[:code],
       state: params[:state],
-      redirect_uri: "(ENV['URL'] || 'http://localhost:3000')/callback"
+      redirect_uri: "https://va-claims-production.herokuapp.com/callback"
     }
     auth = { username: ENV['va_developer_client_id'], password: ENV['va_developer_client_secret'] }
     response = HTTParty.post("#{ENV['vets_api_url']}/oauth2/token", { basic_auth: auth, body: body })
