@@ -33,7 +33,7 @@ class AuthController < ApplicationController
       redirect_uri: 'http://localhost:3000/callback'
     }
     auth = { username: ENV['va_developer_client_id'], password: ENV['va_developer_client_secret'] }
-    response = HTTParty.post('#{ENV['vets_api_url']}/oauth2/token', { basic_auth: auth, body: body })
+    response = HTTParty.post("#{ENV['vets_api_url']}/oauth2/token", { basic_auth: auth, body: body })
     if response.code/400 == 1
       flash.alert = "Login failed because #{response['error']}."
       Rails.logger.warn "Response was 4XX.  This was response:\n    #{response}"
