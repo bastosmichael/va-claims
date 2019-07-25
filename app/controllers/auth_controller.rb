@@ -8,7 +8,7 @@ class AuthController < ApplicationController
     oauth_params = {
       client_id: ENV['va_developer_client_id'],
       nonce: digest(nonce_base),
-      redirect_uri: 'http://localhost:3000/callback',
+      redirect_uri: "#{ENV['URL'] || 'http://localhost:3000'}/callback",
       # response_mode: 'fragment', # defaults to fragment, but this is where it would be changed
       response_type: 'code',
       scope: scope,
@@ -30,7 +30,7 @@ class AuthController < ApplicationController
       grant_type: 'authorization_code',
       code: params[:code],
       state: params[:state],
-      redirect_uri: "https://va-claims-production.herokuapp.com/callback"
+      redirect_uri: "#{ENV['URL'] || 'http://localhost:3000'}/callback"
     }
     auth = { username: ENV['va_developer_client_id'], password: ENV['va_developer_client_secret'] }
     response = HTTParty.post("#{ENV['vets_api_url']}/oauth2/token", { basic_auth: auth, body: body })
