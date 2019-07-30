@@ -8,7 +8,6 @@ class TestUser < ApplicationRecord
      'X-VA-First-Name' => 'Tamara',
      'X-VA-Last-Name' => 'Ellis',
      'X-VA-Birth-Date' => '1967-06-19',
-     'X-VA-EDIPI' => '1005490754',
      'X-Consumer-Username' => 'oddball'
     }
   end
@@ -20,7 +19,6 @@ class TestUser < ApplicationRecord
      'X-VA-First-Name' => first_name,
      'X-VA-Last-Name' => last_name,
      'X-VA-Birth-Date' => birth_date.to_s,
-     'X-VA-EDIPI' => edipi,
      'X-Consumer-Username' => 'oddball',
      'Authorization' => "Bearer #{token}"
     }
