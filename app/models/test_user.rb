@@ -1,4 +1,5 @@
 class TestUser < ApplicationRecord
+  has_many :test_veterans
 
   def self.stub_headers
     {
@@ -28,10 +29,6 @@ class TestUser < ApplicationRecord
   def claims_for(user, session)
     response = RestClient.get("#{ENV['vets_api_url']}/services/claims/v1/claims", headers(session.access_token))
     JSON.parse(response&.body)['data']
-  end
-
-  def test_veterans
-    TestVeteran.where(poa: self.poa)
   end
 
   def active_itf(session)
