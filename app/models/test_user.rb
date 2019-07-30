@@ -12,20 +12,20 @@ class TestUser < ApplicationRecord
     }
   end
 
-  def headers(token)
+  def headers(token, user)
     {
-     'X-VA-SSN' => ssn,
+     'X-VA-SSN' => user.ssn,
      'X-VA-User' => 'mytestapp',
-     'X-VA-First-Name' => first_name,
-     'X-VA-Last-Name' => last_name,
-     'X-VA-Birth-Date' => birth_date.to_s,
+     'X-VA-First-Name' => user.first_name,
+     'X-VA-Last-Name' => user.last_name,
+     'X-VA-Birth-Date' => user.birth_date.to_s,
      'X-Consumer-Username' => 'oddball',
      'Authorization' => "Bearer #{token}"
     }
   end
 
   def claims_for(user, session)
-    response = RestClient.get("#{ENV['vets_api_url']}/services/claims/v1/claims", headers(session.access_token))
+    response = RestClient.get("#{ENV['vets_api_url']}/services/claims/v1/claims", headers(session.access_token, user))
     JSON.parse(response&.body)['data']
   end
 
