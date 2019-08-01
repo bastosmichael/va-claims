@@ -29,6 +29,11 @@ class TestUser < ApplicationRecord
     JSON.parse(response&.body)['data']
   end
 
+  def claim_for(claim_id, user, session)
+    response = RestClient.get("#{ENV['vets_api_url']}/services/claims/v1/claims/#{claim_id}", headers(session.access_token, user))
+    JSON.parse(response&.body)['data']
+  end
+
   def active_itf(session)
     response = RestClient.get("#{ENV['vets_api_url']}/services/claims/v1/forms/0966/active?type=compensation", {'Authorization' => "Bearer #{session.access_token}"})
     JSON.parse(response&.body)['data']

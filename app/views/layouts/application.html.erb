@@ -25,6 +25,11 @@
         </div>
       <% end %>
     </nav>
+    <% flash.each do |key, message| %> 
+      <p class="<%= key %>">
+        <strong><%= message %></strong>
+      </p> 
+    <% end %>
     <%= yield %>
   </body>
 </html>

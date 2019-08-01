@@ -6,19 +6,31 @@ class ClaimsController < ApplicationController
     else
       @claims = TestUser.claims(@session)
     end
+  rescue
+    redirect_back(fallback_location: root_path, alert: "This user has no claims")
   end
 
   def show
-    @claim = TestUser.claim(params[:id], @session)
+    if @veteran.present?
+      @claim = @user.claim_for(params[:id], @veteran, @session)
+    else
+      @claim = TestUser.claim(params[:id], @session)
+    end
+  rescue
+    redirect_back(fallback_location: root_path, alert: "You don't have access to this claim")
   end
 
   def active_itf
     @itf = @user.active_itf(@session)
+  # rescue
+  #   redirect_back(fallback_location: root_path, alert: "No Active ITF Exists")
   end
 
   def submit_itf
     @itf = @user.submit_itf(@session)
     redirect_to active_itf_url
+  # rescue
+  #   redirect_back(fallback_location: root_path, alert: "Failure to submit ITF")
   end
 
   def form_526
