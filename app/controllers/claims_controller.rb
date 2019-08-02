@@ -33,13 +33,13 @@ class ClaimsController < ApplicationController
   def submit_itf
     if @veteran.present?
       @itf = @user.submit_itf_for(@veteran, @session)
-      flash[:success] = "ITF Submitted for #{@veteran.name}"
+      redirect_to active_itf_url(user_id: params[:user_id])
     else
       @itf = @user.submit_itf(@session)
       redirect_to active_itf_url
     end
   rescue
-    flash[:error] = "Failure to submit ITF"
+    redirect_back(fallback_location: root_path, alert: "Failure to submit ITF")
   end
 
   def form_526
