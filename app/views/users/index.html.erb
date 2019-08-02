@@ -31,6 +31,8 @@
         <tr>
           <td><%= veteran.first_name %> <%= veteran.last_name %></td>
           <td class='text-right'><%= link_to 'View claims', claims_url(user_id: veteran.id) %></td>
+          <td class='text-right'><%= link_to 'Active ITF', active_itf_url(user_id: veteran.id) %></td>
+          <td class='text-right'><%= link_to 'Submit ITF', submit_itf_url(user_id: veteran.id) %></td>
           <td class='text-right'><%= link_to 'Delete',  { action: :destroy, id: veteran.id }, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>

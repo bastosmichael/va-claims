@@ -25,10 +25,17 @@
         </div>
       <% end %>
     </nav>
-    <% flash.each do |key, message| %> 
-      <p class="<%= key %>">
-        <strong><%= message %></strong>
-      </p> 
+    <% if flash.alert %>
+      <br/>
+      <div class="alert alert-danger" role="alert">
+          <%= flash.alert %>
+      </div>
+    <% end %>
+    <% if flash.notice %>
+      <br/>
+      <div class="alert alert-warning" role="alert">
+          <%= flash.notice %>
+      </div>
     <% end %>
     <%= yield %>
   </body>

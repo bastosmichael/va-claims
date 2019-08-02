@@ -21,16 +21,25 @@ class ClaimsController < ApplicationController
   end
 
   def active_itf
-    @itf = @user.active_itf(@session)
-  # rescue
-  #   redirect_back(fallback_location: root_path, alert: "No Active ITF Exists")
+    if @veteran.present?
+      @itf = @user.active_itf_for(@veteran, @session)
+    else
+      @itf = @user.active_itf(@session)
+    end
+  rescue
+    redirect_back(fallback_location: root_path, alert: "No Active ITF Exists")
   end
 
   def submit_itf
-    @itf = @user.submit_itf(@session)
-    redirect_to active_itf_url
-  # rescue
-  #   redirect_back(fallback_location: root_path, alert: "Failure to submit ITF")
+    if @veteran.present?
+      @itf = @user.submit_itf_for(@veteran, @session)
+      flash[:success] = "ITF Submitted for #{@veteran.name}"
+    else
+      @itf = @user.submit_itf(@session)
+      redirect_to active_itf_url
+    end
+  rescue
+    flash[:error] = "Failure to submit ITF"
   end
 
   def form_526
