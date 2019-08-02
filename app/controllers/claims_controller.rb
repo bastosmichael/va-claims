@@ -1,5 +1,6 @@
 class ClaimsController < ApplicationController
   before_action :setup_from_session
+
   def index
     if @veteran.present?
       @claims = @user.claims_for(@veteran, @session)

@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2019_07_30_050705) do
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "refresh_token"
   end
 
   create_table "test_users", force: :cascade do |t|
