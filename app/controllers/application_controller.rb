@@ -1,6 +1,6 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
-
-
   def require_auth
     @session = Session.where(id: session[:id]).first
     if @session.nil?
@@ -46,5 +46,4 @@ class ApplicationController < ActionController::Base
     @user ||= TestUser.create(first_name: name_parts.first.downcase, last_name: name_parts.last.downcase)
     @veteran = TestVeteran.find params[:user_id] if params[:user_id].present?
   end
-
 end

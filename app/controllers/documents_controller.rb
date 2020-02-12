@@ -52,7 +52,7 @@ class DocumentsController < ApplicationController
     redirect_to documents_path
   end
 
-    def download
+  def download
     document = Document.find params[:id]
     raw = RestClient::Request.execute(
       method: :get,

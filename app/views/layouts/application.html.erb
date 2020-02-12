@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag 'https://s3-us-gov-west-1.amazonaws.com/dev-design.va.gov/assets/stylesheets/application.css', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'https://s3-us-gov-west-1.amazonaws.com/dev-design.va.gov/assets/stylesheets/application.css', media: 'all', 'data-turbolinks-track': 'reload' %>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -66,6 +67,9 @@
                   </li>
                   <li class="site-header__nav-item">
                     <%= link_to 'Benefits Intake', documents_path, class: 'site-header__nav-item__link' %>
+                  </li>
+                  <li class="site-header__nav-item">
+                    <%= link_to 'Power Of Attorney', form_path(form_number: '2122'), class: 'site-header__nav-item__link', data: {turbolinks: 'false'} %>
                   </li>
                 <% end %>
               </ul>
