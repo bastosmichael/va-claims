@@ -6,7 +6,7 @@ class AuthController < ApplicationController
     nonce_base = SecureRandom.base64(20)
     session[:nonce_key] = nonce_base
     session[:login_time] = Time.zone.now.to_i
-    scope = 'openid profile offline_access claim.read claim.write'
+    scope = 'openid profile offline_access claim.read claim.write disability_rating.read'
     oauth_params = {
       client_id: Figaro.env.va_developer_client_id,
       nonce: digest(nonce_base),
