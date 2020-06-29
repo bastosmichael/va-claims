@@ -60,16 +60,13 @@
                 </li>
                 <% if @session.present? %>
                   <li class="site-header__nav-item">
-                    <a class="site-header__nav-item__link " href="/claims">View Claims</a>
+                    <a class="site-header__nav-item__link " href="/">Representative</a>
                   </li>
                   <li class="site-header__nav-item">
-                    <a class="site-header__nav-item__link " href="/verification">Veteran Verification</a>
+                    <a class="site-header__nav-item__link " href="/claims">Veteran</a>
                   </li>
                   <li class="site-header__nav-item">
                     <%= link_to 'Benefits Intake', documents_path, class: 'site-header__nav-item__link' %>
-                  </li>
-                  <li class="site-header__nav-item">
-                    <%= link_to 'Power Of Attorney', form_path(form_number: '2122'), class: 'site-header__nav-item__link', data: {turbolinks: 'false'} %>
                   </li>
                 <% end %>
               </ul>

@@ -1,12 +1,5 @@
 <div class="site-l-wrapper">
-  <h1 class='text-center'>Welcome</h1>
-  <p class='text-center'>
-    <%= link_to 'My Claims', claims_path, class: 'btn btn-primary' %>
-    <%= link_to 'View Active ITF', active_itf_path, class: 'btn btn-warning' %>
-    <%= link_to 'Submit ITF', submit_itf_path, class: 'btn btn-info', data: {method: :post} %>
-    <%= link_to 'Submit 526', form_path(form_number: '526'), class: 'btn btn-success', data: {turbolinks: "false"} %>
-    <%= link_to 'Submit 2122', form_path(form_number: '2122'), class: 'btn btn-success', data: {turbolinks: "false"} %>
-  </p>
+  <h1 class='text-center'>Representative (VSO, CA, Attorney) Access</h1>
 </div>
 
 <div class='vads-l-grid-container'>
@@ -45,16 +38,12 @@
           <th scope="col">Name</th>
           <th scope="col"></th>
           <th scope="col"></th>
-          <th scope="col"></th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <% @user.test_veterans.each do |veteran| %>
         <tr>
           <td><%= veteran.first_name %> <%= veteran.last_name %></td>
           <td class='text-center'><%= link_to 'View claims', claims_url(user_id: veteran.id) %></td>
-          <td class='text-center'><%= link_to 'Active ITF', active_itf_url(user_id: veteran.id) %></td>
-          <td class='text-center'><%= link_to 'Submit ITF', submit_itf_url(user_id: veteran.id) %></td>
           <td class='text-center'><%= link_to 'Delete',  { action: :destroy, id: veteran.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: 'danger' %></td>
         </tr>
       <% end %>
