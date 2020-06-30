@@ -46,7 +46,6 @@ class ClaimsController < ApplicationController
   end
 
   def form_show
-    # this will need to be refactored to handle different types of forms
     @form_number = params[:form_number]
     @form = schema_service.show(params)
   rescue StandardError

@@ -9,9 +9,8 @@
       <li><b>Status: </b><%= @itf["attributes"]["status"] %></li>
     </ul>
   <% else %>
-    <%= link_to 'Submit ITF', submit_itf_claims_path, class: 'btn btn-primary' %>
+    <%= link_to 'Submit 0966', form_url(user_id: @veteran.try(:id), form_number: '0966'), data: {turbolinks: "false"} %>
   <% end %>
-  <%= link_to 'Back to User', user_url %>
 </div>
 <div class='col-md-6 offset-md-3'>
   <% if Figaro.env.debug_access_token? %>
