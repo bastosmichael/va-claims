@@ -71,7 +71,7 @@ class ClaimsController < ApplicationController
   end
 
   def update_supporting_document
-    response = RestClient.post("#{Figaro.env.vets_api_url}/services/claims/v0/forms/526/#{params[:id]}/attachments", { attachment: params[:attachment] }, TestUser.stub_headers)
+    response = RestClient.post("#{Figaro.env.vets_api_url}/services/claims/v1/forms/526/#{params[:id]}/attachments", { attachment: params[:attachment] })
     JSON.parse(response&.body)['data']
     redirect_to claim_path(params[:id])
   end
@@ -79,7 +79,7 @@ class ClaimsController < ApplicationController
   private
 
   def schema_service
-    @schema_service ||= SchemaService.new(@session.access_token)
+    @schema_service ||= SchemaService.new(@session.access_token, @veteran)
   end
 
   def claims_service
@@ -91,7 +91,7 @@ class ClaimsController < ApplicationController
   end
 
   def poa_service
-    @poa_service ||= PoaService.new(@session.access_token)
+    @poa_service ||= PoaService.new(@session.access_token, @veteran)
   end
 
   def setup_from_session

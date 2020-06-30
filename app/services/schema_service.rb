@@ -2,6 +2,6 @@
 
 class SchemaService < BaseClaimsService
   def schema(form_number)
-    get("#{BASE_PATH}/forms/#{form_number}")
+    get("#{BASE_PATH}/forms/#{form_number}", authorization_header)
   end
 end
