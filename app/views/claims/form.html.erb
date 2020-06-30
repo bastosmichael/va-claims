@@ -1,4 +1,4 @@
-<h3 class='h3 text-center'>Submit <%= @form_number %> for <%= @veteran.present? ? "#{@veteran.name} requested by #{@name}" : @name %></h3>
+<h3 class='h3 text-center'>Submit <%= @schema['description'].gsub('Schema','') %> for <%= @veteran.present? ? "#{@veteran.name} requested by #{@name}" : @name %></h3>
   <%= render partial: "menu" %>
 
 <div class="site-l-wrapper">

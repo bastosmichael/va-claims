@@ -1,0 +1,18 @@
+<div class="site-l-wrapper">
+  <h3 class='h3 text-center'>Power of Attorney for <%= @veteran.present? ? "#{@veteran.name} requested by #{@name}" : @name %></h3>
+  <%= render partial: "menu" %>
+    <ul>
+      <li><b>Date: </b><%= @poa["attributes"]["date_request_accepted"] %></li>
+      <li><b>Previous POA Code: </b><%= @poa["attributes"]["previous_poa"] %></li>
+      <li><b>Type: </b><%= @poa["attributes"]["type"] %></li>
+      <li><b>Status: </b><%= @poa["attributes"]["status"] %></li>
+    </ul>
+</div>
+<div class='col-md-6 offset-md-3'>
+  <% if Figaro.env.debug_access_token? %>
+    <hr />
+    <h3>My session token</h3>
+
+    <div class='well' id='access_token'><%= @session.access_token %></div>
+  <% end %>
+</div>

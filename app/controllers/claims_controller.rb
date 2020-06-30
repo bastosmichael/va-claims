@@ -27,6 +27,16 @@ class ClaimsController < ApplicationController
     redirect_back(fallback_location: root_path, alert: 'No Active ITF Exists')
   end
 
+  def active_poa
+    @poa = if @veteran.present?
+             poa_service.active_poa_for(@veteran)
+           else
+             poa_service.user_active_poa
+           end
+  rescue StandardError
+    redirect_back(fallback_location: root_path, alert: 'No Active ITF Exists')
+  end
+
   def submit_itf
     itf_service.submit_itf
     if @veteran.present?
