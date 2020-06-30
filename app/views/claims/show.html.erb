@@ -3,7 +3,7 @@
     <div class='col-12'>
       <div class='row'>
         <div class='col-md-10'>
-          <h3 class='h3'>Claim Details</h3>
+        <h3 class='h3 text-center'>Claim Details for <%= @veteran.present? ? "#{@veteran.name} requested by #{@name}" : @name %></h3>
         </div>
         <div class='col-md-2'>
           <span class="pill pill-<%= @claim['attributes']['status']&.downcase %>">
