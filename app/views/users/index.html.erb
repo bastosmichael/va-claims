@@ -1,8 +1,27 @@
 <div class="site-l-wrapper">
-  <h1 class='text-center'>Representative (VSO, CA, Attorney) Access</h1>
+  <h3 class='text-center'>Veterans Represented by <%= @name %></h3>
 </div>
 
 <div class='vads-l-grid-container'>
+  
+  <% if @user && @user.test_veterans.present? %>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <% @user.test_veterans.each do |veteran| %>
+        <tr>
+          <td><%= veteran.first_name %> <%= veteran.last_name %></td>
+          <td class='text-center'><%= link_to 'View claims', claims_url(user_id: veteran.id) %></td>
+          <td class='text-center'><%= link_to 'Delete',  { action: :destroy, id: veteran.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: 'danger' %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
   <%= form_tag({controller: "users", action: "create"}, method: "post") do %>
     <div class="vads-l-row">
       <div class="vads-l-col--6">
@@ -26,28 +45,9 @@
     </div>
     <div class="vads-l-row">
       <div class="vads-l-col--12 text-center">
-        <%= submit_tag("Add Veteran") %>
+        <%= submit_tag("Add A Veteran") %>
       </div>
     </div>
-  <% end %>
-  <% if @user && @user.test_veterans.present? %>
-    <h3 class="h3 text-center">Veterans I Represent</h3>
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col"></th>
-          <th scope="col"></th>
-        </tr>
-      </thead>
-      <% @user.test_veterans.each do |veteran| %>
-        <tr>
-          <td><%= veteran.first_name %> <%= veteran.last_name %></td>
-          <td class='text-center'><%= link_to 'View claims', claims_url(user_id: veteran.id) %></td>
-          <td class='text-center'><%= link_to 'Delete',  { action: :destroy, id: veteran.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: 'danger' %></td>
-        </tr>
-      <% end %>
-    </table>
   <% end %>
 </div>
 <div class='col-md-6 offset-md-3'>
