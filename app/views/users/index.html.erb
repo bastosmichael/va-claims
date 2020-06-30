@@ -24,7 +24,7 @@
           <td class='text-center'><%= link_to 'View', claims_url(user_id: veteran.id) %></td>
           <td class='text-center'><%= link_to 'Active', active_itf_url(user_id: veteran.id) %></td>	
           <td class='text-center'><%= link_to 'Active', active_poa_url(user_id: veteran.id) %></td>	
-          <td class='text-center'><%= link_to 'Submit', submit_itf_url(user_id: veteran.id) %></td>
+          <td class='text-center'><%= link_to 'Submit', form_url(user_id: veteran.try(:id), form_number: '0966'), data: {turbolinks: "false"} %></td>	
           <td class='text-center'><%= link_to 'Submit', form_url(user_id: veteran.try(:id), form_number: '526'), data: {turbolinks: "false"} %></td>	
           <td class='text-center'><%= link_to 'Submit', form_url(user_id: veteran.try(:id), form_number: '2122'), data: {turbolinks: "false"} %></td>
           <td class='text-center'><%= link_to 'Remove',  { action: :destroy, id: veteran.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: 'danger' %></td>
