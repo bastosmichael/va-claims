@@ -1,5 +1,6 @@
 <div class="site-l-wrapper">
   <h3 class='h3 text-center'>Claims for <%= @veteran.present? ? "#{@veteran.name} requested by #{@name}" : @name %></h3>
+  <%= render partial: "menu" %>
   <table>
     <thead>
       <tr>

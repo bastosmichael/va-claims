@@ -1,5 +1,6 @@
 <div class="site-l-wrapper">
-  <h3 class='h3 text-center'>Active Intent to File</h3>
+  <h3 class='h3 text-center'>Intent to File for <%= @veteran.present? ? "#{@veteran.name} requested by #{@name}" : @name %></h3>
+  <%= render partial: "menu" %>
   <% if @itf.present? %>
     <ul>
       <li><b>Creation Date: </b><%= @itf["attributes"]["creation_date"] %></li>

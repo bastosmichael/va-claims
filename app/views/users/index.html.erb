@@ -11,12 +11,16 @@
           <th scope="col">Name</th>
           <th scope="col"></th>
           <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <% @user.test_veterans.each do |veteran| %>
         <tr>
           <td><%= veteran.first_name %> <%= veteran.last_name %></td>
           <td class='text-center'><%= link_to 'View claims', claims_url(user_id: veteran.id) %></td>
+          <td class='text-center'><%= link_to 'Active ITF', active_itf_url(user_id: veteran.id) %></td>	
+          <td class='text-center'><%= link_to 'Submit ITF', submit_itf_url(user_id: veteran.id) %></td>
           <td class='text-center'><%= link_to 'Delete',  { action: :destroy, id: veteran.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: 'danger' %></td>
         </tr>
       <% end %>

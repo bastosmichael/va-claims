@@ -19,9 +19,9 @@ class ClaimsController < ApplicationController
 
   def active_itf
     @itf = if @veteran.present?
-             @user.active_itf_for(@veteran, @session)
+             itf_service.active_itf_for(@veteran)
            else
-             @user.active_itf(@session)
+             itf_service.user_active_itf
            end
   rescue StandardError
     redirect_back(fallback_location: root_path, alert: 'No Active ITF Exists')

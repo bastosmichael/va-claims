@@ -1,0 +1,7 @@
+<p class='text-center'>	
+    <%= link_to 'View claims', claims_url(user_id: @veteran.try(:id)) %> | 
+    <%= link_to 'View Active ITF', active_itf_url(user_id: @veteran.try(:id)) %>	 | 
+    <%= link_to 'Submit ITF', submit_itf_url(user_id: @veteran.try(:id)) %> | 	
+    <%= link_to 'Submit 526', form_path(form_number: '526'), data: {turbolinks: "false"} %> | 	
+    <%= link_to 'Submit 2122', form_path(form_number: '2122'), data: {turbolinks: "false"} %>	
+</p>	
