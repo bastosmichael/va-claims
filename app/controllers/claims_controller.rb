@@ -50,16 +50,16 @@ class ClaimsController < ApplicationController
 
   def form_submit
     render json: schema_service.submit_form(params)
-  # rescue => e
-  #   redirect_back(fallback_location: root_path, alert: e&.response.to_s )
+  rescue => e
+    redirect_back(fallback_location: root_path, alert: e&.response.to_s )
   end
 
   def form_show
     @form_number = params[:form_number]
     params['id'] = 'active' if @form_number == '0966'
     @form = schema_service.show(params)
-  # rescue => e
-  #   redirect_back(fallback_location: root_path, alert: e&.response.to_s )
+  rescue => e
+    redirect_back(fallback_location: root_path, alert: e&.response.to_s )
   end
 
   def poa_upload
